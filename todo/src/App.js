@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [todos, setTodos] = useState(['Take out the trash.', 'Create a todo list using React.']);
+  const [input, setInput] = useState('');
+  console.log('JACOB', input);
+
+  const addTodo = (event) => {
+    event.preventDefault();
+    console.log('RHETT', 'I am working!!!');
+    setTodos([...todos, input]);
+    setInput('');
+    console.log(todos);   
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <h1>Hello, World</h1>
-      </header>
-    </div>
+     <div className="App">
+       <h1>Hello Clever Programmers!</h1>
+       <input value={input} onChange={event => setInput(event.target.value)}></input>
+       <button onClick={addTodo}>Add Todo</button>
+
+       <ul>
+         {todos.map(todo => (
+           <li>{todo}</li>
+         ))}
+       </ul>
+     </div>
   );
 }
 
